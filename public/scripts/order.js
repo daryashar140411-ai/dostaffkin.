@@ -1,3 +1,4 @@
+```javascript
 (function () {
   const fromInput = document.getElementById('from');
   const toInput = document.getElementById('to');
@@ -44,7 +45,9 @@
   initMap();
 
   function selectedSize() {
-    const active = document.querySelector('.main-size-card.active, .main-size-card.is-active');
+    const active = document.querySelector(
+      '.main-size-card.active, .main-size-card.is-active'
+    );
     return active ? active.dataset.value : 's';
   }
 
@@ -145,8 +148,11 @@
       calculated = true;
       document.getElementById('submit').disabled = false;
     } catch (error) {
-      console.error(error);
-      alert('Не удалось построить маршрут. Проверьте адреса.');
+      console.error('Ошибка построения маршрута:', error);
+      alert(
+        'Ошибка построения маршрута: ' +
+        (error?.message || String(error))
+      );
     } finally {
       calcButton.disabled = false;
       calcButton.textContent = 'Рассчитать';
@@ -168,7 +174,9 @@
     }
 
     const id = String(Math.floor(10000 + Math.random() * 90000));
-    const orders = JSON.parse(localStorage.getItem('dostaffkinOrders') || '{}');
+    const orders = JSON.parse(
+      localStorage.getItem('dostaffkinOrders') || '{}'
+    );
 
     orders[id] = {
       id: id,
@@ -189,3 +197,4 @@
   calcButton.disabled = true;
   document.getElementById('submit').disabled = true;
 })();
+```
