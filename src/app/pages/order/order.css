@@ -1,1 +1,289 @@
-.page{max-width:900px;margin:40px auto;padding:24px}.page h1{color:#243b80}.page p{color:#596174;line-height:1.6}form{display:grid;gap:18px;margin-top:28px;padding:28px;background:white;border-radius:14px;box-shadow:0 5px 24px #17255412}label{display:grid;gap:8px;font-weight:600;color:#30384d}input,select{padding:14px;border:1px solid #d8dce6;border-radius:8px;font:inherit}button{padding:14px;border:0;border-radius:8px;background:#ef7b35;color:white;font-weight:700}button:disabled{opacity:.55}
+* {
+  box-sizing: border-box;
+}
+
+.map-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: #e9edf2;
+}
+
+.header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 5%;
+  background: #fff;
+  box-shadow: 0 2px 12px #17255412;
+}
+
+.header-brand,
+.header-menu,
+.header-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #243b80;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.header-logo {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #ef7b35;
+  color: white;
+}
+
+.order-panel {
+  position: relative;
+  z-index: 1;
+  width: min(570px, calc(100% - 30px));
+  max-height: calc(100vh - 100px);
+  margin: 20px 20px 20px auto;
+  overflow-y: auto;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 8px 35px #17255425;
+}
+
+.panel-heading,
+.panel-body {
+  padding: 24px;
+}
+
+.panel-heading {
+  border-bottom: 1px solid #e8eaf0;
+}
+
+.panel-heading h1 {
+  margin: 0 0 8px;
+  color: #243b80;
+  font-size: 25px;
+}
+
+.panel-heading p {
+  margin: 0;
+  color: #737b8d;
+}
+
+.panel-body section {
+  margin-bottom: 24px;
+}
+
+.section-label {
+  margin-bottom: 12px;
+  color: #30384d;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.route-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding: 0 12px;
+  border: 1px solid #d8dce6;
+  border-radius: 8px;
+}
+
+.route-field input,
+.contact-row input,
+.contact-form textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 13px 5px;
+  border: 0;
+  outline: none;
+  font: inherit;
+}
+
+.pin {
+  width: 11px;
+  height: 11px;
+  flex: 0 0 11px;
+  border-radius: 50%;
+  background: #ef7b35;
+}
+
+.pin.to {
+  background: #243b80;
+}
+
+.sizes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.size-card {
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  padding: 10px 5px;
+  border: 1px solid #d8dce6;
+  border-radius: 10px;
+  background: white;
+  color: #30384d;
+  cursor: pointer;
+}
+
+.size-card.active,
+.size-card.is-active {
+  border: 2px solid #ef7b35;
+  background: #fff8f3;
+}
+
+.size-card img {
+  width: 65px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.size-card span,
+.size-card small {
+  color: #737b8d;
+  font-size: 11px;
+}
+
+.main-speeds {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.main-speed-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid #d8dce6;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.main-speed-card.is-active {
+  border-color: #ef7b35;
+  background: #fff8f3;
+}
+
+.main-speed-media {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.calculate {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  border: 0;
+  border-radius: 9px;
+  background: #ef7b35;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.calculate:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.calculation {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 18px;
+  border-radius: 10px;
+  background: #f5f6fa;
+  color: #30384d;
+}
+
+.calculation > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.calculation .total {
+  padding-top: 12px;
+  border-top: 1px solid #d8dce6;
+  font-size: 17px;
+}
+
+.total strong {
+  color: #ef7b35;
+}
+
+.contact-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.contact-form > b {
+  color: #243b80;
+  font-size: 18px;
+}
+
+.contact-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.contact-row input,
+.contact-form textarea {
+  border: 1px solid #d8dce6;
+  border-radius: 8px;
+}
+
+.contact-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.extra-label {
+  margin: 5px 0 0;
+}
+
+#form-message {
+  color: #243b80;
+}
+
+@media (max-width: 650px) {
+  .header {
+    padding: 12px 15px;
+  }
+
+  .header-menu {
+    gap: 10px;
+    font-size: 12px;
+  }
+
+  .order-panel {
+    max-height: none;
+    margin: 15px auto;
+  }
+
+  .panel-heading,
+  .panel-body {
+    padding: 18px;
+  }
+
+  .contact-row {
+    grid-template-columns: 1fr;
+  }
+}
