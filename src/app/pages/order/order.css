@@ -1,7 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
 .map-background {
   position: fixed;
   inset: 0;
