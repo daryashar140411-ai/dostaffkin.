@@ -1,1 +1,114 @@
-<main class="page form-page"><h1>Оформление доставки</h1><p>Заполните данные отправления. Расчёт маршрута и оформление заказа будут добавлены в следующих шагах проекта.</p><form><label>Адрес отправления<input type="text" placeholder="Откуда забрать посылку"></label><label>Адрес получения<input type="text" placeholder="Куда доставить посылку"></label><label>Размер посылки<select><option>Маленькая</option><option>Средняя</option><option>Большая</option></select></label><button type="button" disabled>Рассчитать</button></form></main>
+<div id="yandex-map" class="map-background" aria-label="Карта маршрута"></div>
+
+<header class="header">
+  <a class="header-brand" href="#/">
+    <span class="header-logo">D</span>
+    <span class="header-title">Dostaffkin</span>
+  </a>
+  <nav class="header-menu">
+    <a class="header-link" href="#/order">Оформить доставку</a>
+    <a class="header-link" href="#/track">Отследить посылку</a>
+  </nav>
+</header>
+
+<aside class="order-panel">
+  <div class="panel-heading">
+    <h1>Оформление доставки</h1>
+    <p>Выберите параметры для расчета отправления</p>
+  </div>
+
+  <div class="panel-body">
+    <section>
+      <div class="section-label">Маршрут</div>
+      <label class="route-field">
+        <i class="pin from"></i>
+        <input id="from" placeholder="Откуда: начните вводить адрес" autocomplete="off">
+      </label>
+      <label class="route-field">
+        <i class="pin to"></i>
+        <input id="to" placeholder="Куда: начните вводить адрес" autocomplete="off">
+      </label>
+    </section>
+
+    <section>
+      <div class="section-label">Размер посылки</div>
+      <div class="sizes-grid">
+        <button class="size-card main-size-card" type="button" data-size="XS" data-value="xs" data-rate="9">
+          <b>XS</b><span>9 ₽/км</span>
+          <img src="images/sizes/xs.png" alt="XS">
+          <small>17×12×9 см,<br>до 0.5 кг</small>
+        </button>
+        <button class="size-card active main-size-card" type="button" data-size="S" data-value="s" data-rate="13">
+          <b>S</b><span>13 ₽/км</span>
+          <img src="images/sizes/s.png" alt="S">
+          <small>23×19×10 см,<br>до 2 кг</small>
+        </button>
+        <button class="size-card main-size-card" type="button" data-size="M" data-value="m" data-rate="20">
+          <b>M</b><span>20 ₽/км</span>
+          <img src="images/sizes/m.png" alt="M">
+          <small>33×25×15 см,<br>до 5 кг</small>
+        </button>
+        <button class="size-card main-size-card" type="button" data-size="L" data-value="l" data-rate="27">
+          <b>L</b><span>27 ₽/км</span>
+          <img src="images/sizes/l.png" alt="L">
+          <small>31×25×38 см,<br>до 12 кг</small>
+        </button>
+        <button class="size-card main-size-card" type="button" data-size="XL" data-value="xl" data-rate="35">
+          <b>XL</b><span>35 ₽/км</span>
+          <img src="images/sizes/xl.png" alt="XL">
+          <small>60×35×30 см,<br>до 18 кг</small>
+        </button>
+        <button class="size-card main-size-card" type="button" data-size="MAX" data-value="max" data-rate="70">
+          <b>MAX</b><span>70 ₽/км</span>
+          <img src="images/sizes/max.png" alt="MAX">
+          <small>120×120×80 см,<br>до 200 кг</small>
+        </button>
+      </div>
+    </section>
+
+    <section class="main-speed">
+      <div class="section-label">Скорость доставки</div>
+      <div class="main-speeds">
+        <div class="main-speed-card is-active" data-value="regular" role="button" tabindex="0" aria-pressed="true">
+          <img class="main-speed-media" src="images/icons/regular.svg" alt="Обычная">
+          <div class="main-speed-description">Обычная</div>
+        </div>
+        <div class="main-speed-card" data-value="fast" role="button" tabindex="0" aria-pressed="false">
+          <img class="main-speed-media" src="images/icons/fast.svg" alt="Приоритетная">
+          <div class="main-speed-description">Приоритетная</div>
+        </div>
+      </div>
+    </section>
+
+    <button class="calculate" id="calc" type="button" disabled>Рассчитать</button>
+
+    <section class="calculation">
+      <b>Расчеты вашего заказа</b>
+      <div><span>Расстояние</span><span id="distanceValue">—</span></div>
+      <div><span>Доставим через</span><span id="durationValue">—</span></div>
+      <div><span>Тариф</span><span id="rateValue">—</span></div>
+      <div class="total"><span>Итого</span><strong id="totalValue">—</strong></div>
+    </section>
+
+    <form class="contact-form" id="orderForm" onsubmit="return false">
+      <b>Оформление доставки</b>
+      <div class="section-label">Контакты</div>
+      <div class="contact-row">
+        <input id="customerName" placeholder="Ваше имя" required>
+        <input id="customerPhone" type="tel" placeholder="Ваш телефон" required>
+      </div>
+      <div class="section-label extra-label">Дополнительная информация</div>
+      <textarea id="comment" placeholder="Детали доставки и комментарий"></textarea>
+      <button class="calculate" id="submit" type="button" disabled>Отправить заявку</button>
+      <p id="form-message" role="status"></p>
+    </form>
+
+    <section class="contact-form" id="orderSuccess" hidden>
+      <b>Заявка отправлена!</b>
+      <p>Ваш номер отправления:</p>
+      <strong id="orderId"></strong>
+      <p>Сохраните номер, чтобы отслеживать доставку.</p>
+      <a class="calculate" href="#/track">Отследить посылку</a>
+    </section>
+  </div>
+</aside>
