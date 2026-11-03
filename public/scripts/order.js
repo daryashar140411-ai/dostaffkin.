@@ -1,4 +1,3 @@
-```javascript
 (function () {
   const fromInput = document.getElementById('from');
   const toInput = document.getElementById('to');
